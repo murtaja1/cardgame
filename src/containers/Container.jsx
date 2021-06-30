@@ -5,6 +5,20 @@ import Bot from "../components/GameBoard/Bot"
 import { Grid, CircularProgress } from "@material-ui/core"
 
 const baseUrl = "https://deckofcardsapi.com/api/deck/"
+const cardValues = {
+	2: 2,
+	3: 3,
+	4: 4,
+	5: 5,
+	6: 6,
+	7: 7,
+	8: 8,
+	9: 9,
+	ACE: 1,
+	JACK: 11,
+	QUEEN: 12,
+	KING: 14
+}
 
 function Container() {
 	const [deck, setDecks] = useState({
@@ -48,6 +62,23 @@ function Container() {
 		}
 		setData()
 	}, [])
+
+	useEffect(() => {
+		if (card.bot.length > 0 && card.player.length > 0) {
+			console.log(card.bot.length)
+			const player = cardValues[card.player[0].value]
+			const bot = cardValues[card.bot[0].value]
+			if (player > bot) {
+				console.log("win")
+			}
+			if (player < bot) {
+				console.log("lose")
+			}
+			if (player === bot) {
+				console.log("win")
+			}
+		}
+	}, [card.bot])
 
 	return (
 		<div>
