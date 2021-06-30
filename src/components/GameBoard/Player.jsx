@@ -1,15 +1,19 @@
 import React from "react"
-import { Button, Grid } from "@material-ui/core"
+import { Button, Grid, Typography } from "@material-ui/core"
+import cardback from "../../Images/cardback.png"
 
 function Player({ drawCard, card }) {
 	return (
 		<div>
 			<Grid container direction="row">
 				<Grid item xs={12}>
-					{card && <img src={card.image} width="50%" alt={card.vlaue} />}
+					<Typography variant="h4">You</Typography>
 				</Grid>
 				<Grid item xs={12}>
-					<Button variant="contained" color="primary" onClick={drawCard}>
+					<img src={card ? card.image : cardback} width="50%" alt="card" />
+				</Grid>
+				<Grid item xs={12}>
+					<Button variant="contained" size="small" color="primary" onClick={drawCard}>
 						Draw
 					</Button>
 				</Grid>
