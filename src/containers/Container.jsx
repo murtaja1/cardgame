@@ -6,6 +6,7 @@ import { Grid, CircularProgress, Button } from "@material-ui/core"
 
 const baseUrl = "https://deckofcardsapi.com/api/deck/"
 const cardValues = {
+	ACE: 1,
 	2: 2,
 	3: 3,
 	4: 4,
@@ -14,7 +15,7 @@ const cardValues = {
 	7: 7,
 	8: 8,
 	9: 9,
-	ACE: 1,
+	10: 10,
 	JACK: 11,
 	QUEEN: 12,
 	KING: 14

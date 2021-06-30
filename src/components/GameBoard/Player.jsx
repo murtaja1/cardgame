@@ -14,7 +14,7 @@ function Player({ drawCard, card }) {
 				</Grid>
 				<Grid item xs={12}>
 					<Button variant="contained" size="small" color="primary" onClick={drawCard}>
-						Draw
+						Deal
 					</Button>
 				</Grid>
 			</Grid>
