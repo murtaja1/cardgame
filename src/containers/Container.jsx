@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react"
 import Player from "../components/GameBoard/Player"
 import Header from "../components/Header"
 import Bot from "../components/GameBoard/Bot"
+import Result from "../components/GameBoard/Result"
 import { Grid, CircularProgress, Button } from "@material-ui/core"
 import { baseUrl, cardValues } from "../ConstData"
 
@@ -14,6 +15,10 @@ function Container() {
 	const [card, setCard] = useState({
 		player: "",
 		bot: ""
+	})
+	const [result, setResult] = useState({
+		show: false,
+		text: ""
 	})
 	const getNewDeck = async () => {
 		const promise = await fetch(baseUrl + "new/shuffle/?deck_count=1")
@@ -30,8 +35,16 @@ function Container() {
 			player: "",
 			bot: ""
 		})
+		setResult({
+			show: false,
+			text: ""
+		})
 	}
 	const drawCard = async (deckId, owner) => {
+		setResult({
+			show: false,
+			text: ""
+		})
 		const promise = await fetch(baseUrl + deckId + "/draw/?count=1")
 		const res = await promise.json()
 		setCard({
@@ -63,13 +76,24 @@ function Container() {
 		if (card.bot && card.player) {
 			const player = cardValues[card.player.value]
 			const bot = cardValues[card.bot.value]
-			if (player > bot) {
-				console.log("win")
-			} else if (player < bot) {
-				console.log("lose")
-			} else {
-				console.log("equal")
-			}
+			setTimeout(() => {
+				if (player > bot) {
+					setResult({
+						show: true,
+						text: "You Won!"
+					})
+				} else if (player < bot) {
+					setResult({
+						show: true,
+						text: "You Lost!"
+					})
+				} else {
+					setResult({
+						show: true,
+						text: "No One Wins!"
+					})
+				}
+			}, 500)
 		}
 	}, [card.bot])
 
@@ -83,6 +107,9 @@ function Container() {
 					</Grid>
 					<Grid item xs={6}>
 						<Bot card={card.bot} />
+					</Grid>
+					<Grid item xs={12}>
+						{result.show && <Result text={result.text} />}
 					</Grid>
 					<Grid item xs={6}>
 						<Button variant="contained" size="small" color="secondary" onClick={handleReset}>
