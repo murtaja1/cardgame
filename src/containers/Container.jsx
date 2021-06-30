@@ -21,9 +21,13 @@ function Container() {
 		text: ""
 	})
 	const getNewDeck = async () => {
-		const promise = await fetch(baseUrl + "new/shuffle/?deck_count=1")
-		const res = await promise.json()
-		return res.deck_id
+		try {
+			const promise = await fetch(baseUrl + "new/shuffle/?deck_count=1")
+			const res = await promise.json()
+			return res.deck_id
+		} catch {
+			alert("something when wrong, please reload the page!")
+		}
 	}
 	const handleReset = () => {
 		setDecks({
@@ -45,12 +49,16 @@ function Container() {
 			show: false,
 			text: ""
 		})
-		const promise = await fetch(baseUrl + deckId + "/draw/?count=1")
-		const res = await promise.json()
-		setCard({
-			...card,
-			[owner]: res.cards[0]
-		})
+		try {
+			const promise = await fetch(baseUrl + deckId + "/draw/?count=1")
+			const res = await promise.json()
+			setCard({
+				...card,
+				[owner]: res.cards[0]
+			})
+		} catch {
+			alert("something when wrong, please reload the page!")
+		}
 	}
 	const playerDraw = () => {
 		drawCard(decks.palyer, "player")
