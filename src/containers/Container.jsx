@@ -53,10 +53,10 @@ function Container() {
 			<Header />
 			<Grid container direction="row" justify="space-around">
 				<Grid item xs={6}>
-					<Player drawCard={playerDraw} card={card.player} />
+					<Player drawCard={playerDraw} card={card.player[0]} />
 				</Grid>
 				<Grid item xs={6}>
-					<Bot card={card.bot} />
+					<Bot card={card.bot[0]} />
 				</Grid>
 			</Grid>
 		</div>

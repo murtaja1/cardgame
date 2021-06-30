@@ -1,13 +1,19 @@
 import React from "react"
-import { Button } from "@material-ui/core"
+import { Button, Grid } from "@material-ui/core"
 
 function Player({ drawCard, card }) {
 	return (
 		<div>
-			{card && <img src={card[0].image} width="50%" alt="d" />}
-			<Button variant="contained" color="primary" onClick={drawCard}>
-				Draw
-			</Button>
+			<Grid container direction="row">
+				<Grid item xs={12}>
+					{card && <img src={card.image} width="50%" alt={card.vlaue} />}
+				</Grid>
+				<Grid item xs={12}>
+					<Button variant="contained" color="primary" onClick={drawCard}>
+						Draw
+					</Button>
+				</Grid>
+			</Grid>
 		</div>
 	)
 }
