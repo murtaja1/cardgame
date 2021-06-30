@@ -3,7 +3,7 @@ import { Typography, Box } from "@material-ui/core"
 
 function Header() {
 	return (
-		<Box my={3}>
+		<Box mt={1}>
 			<Typography variant="h3">Card Game</Typography>
 		</Box>
 	)

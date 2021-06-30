@@ -4,7 +4,7 @@ import Header from "../components/Header"
 import Bot from "../components/GameBoard/Bot"
 import Result from "../components/GameBoard/Result"
 import { Grid, CircularProgress, Button } from "@material-ui/core"
-import { baseUrl, cardValues } from "../ConstData"
+import { baseUrl, cardValues, error } from "../ConstData"
 
 function Container() {
 	const [decks, setDecks] = useState({
@@ -26,7 +26,7 @@ function Container() {
 			const res = await promise.json()
 			return res.deck_id
 		} catch {
-			alert("something when wrong, please reload the page!")
+			alert(error)
 		}
 	}
 	const handleReset = () => {
@@ -57,7 +57,7 @@ function Container() {
 				[owner]: res.cards[0]
 			})
 		} catch {
-			alert("something when wrong, please reload the page!")
+			alert(error)
 		}
 	}
 	const playerDraw = () => {

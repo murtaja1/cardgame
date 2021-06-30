@@ -1,4 +1,5 @@
 export const baseUrl = "https://deckofcardsapi.com/api/deck/"
+export const error = "something when wrong, please reload the page!"
 export const cardValues = {
 	ACE: 1,
 	2: 2,
